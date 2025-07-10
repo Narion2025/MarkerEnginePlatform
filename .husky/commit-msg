@@ -1,3 +1,8 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
-npx --no -- commitlint --edit "$1"
+
+# Wechsle ins Git-Root-Verzeichnis
+cd "$(git rev-parse --show-toplevel)"
+
+# Führe commitlint mit dem absoluten Pfad und expliziter Konfiguration aus
+/Users/benjaminpoersch/.nvm/versions/node/v20.19.2/bin/node node_modules/@commitlint/cli/cli.js --config commitlint.config.js --edit "$1"
