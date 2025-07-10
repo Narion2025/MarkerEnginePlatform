@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  marker-engine-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    image: marker-engine:dev
+    container_name: marker-engine-dev
+    volumes:
+      # Bind-mount für Hot-Reload
+      - .:/app:delegated
+      # Verhindere, dass node_modules überschrieben wird (falls vorhanden)
+      - /app/node_modules
+      # Cache für pip/poetry
+      - marker-engine-cache:/root/.cache
+    environment:
+      - PYTHONUNBUFFERED=1
+      - PYTHONDONTWRITEBYTECODE=1
+      - ENVIRONMENT=development
+      - LOG_LEVEL=DEBUG
+      # OpenAI API Key (aus .env file)
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+    ports:
+      # API Port
+      - "8000:8000"
+      # Debug Port
+      - "5678:5678"
+    command: |
+      bash -c "
+        echo '🚀 Starting Marker Engine in Development Mode...'
+        echo '📦 Installing dependencies...'
+        poetry install --no-interaction --no-ansi
+        echo '🧪 Running tests...'
+        python -m pytest -q || true
+        echo '✅ Ready for development!'
+        echo '💡 You can now:'
+        echo '   - Run tests: docker-compose -f docker-compose.dev.yml exec marker-engine-dev pytest'
+        echo '   - Start API: docker-compose -f docker-compose.dev.yml exec marker-engine-dev uvicorn api.main:app --reload'
+        echo '   - Use CLI: docker-compose -f docker-compose.dev.yml exec marker-engine-dev marker-cli --help'
+        tail -f /dev/null
+      "
+    stdin_open: true
+    tty: true
+    networks:
+      - marker-net
+
+  # Optional: Redis für Caching/Sessions
+  redis:
+    image: redis:7-alpine
+    container_name: marker-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - marker-net
+    profiles:
+      - with-redis
+
+  # Optional: PostgreSQL für persistente Daten
+  postgres:
+    image: postgres:16-alpine
+    container_name: marker-postgres
+    environment:
+      - POSTGRES_USER=marker
+      - POSTGRES_PASSWORD=marker-dev
+      - POSTGRES_DB=marker_engine
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - marker-net
+    profiles:
+      - with-db
+
+networks:
+  marker-net:
+    driver: bridge
+
+volumes:
+  marker-engine-cache:
+  redis-data:
+  postgres-data: 
