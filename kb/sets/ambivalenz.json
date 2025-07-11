@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "keywords": [
+    "ambivalent",
+    "zwiespältig",
+    "doppeldeutig",
+    "innerer Konflikt",
+    "unsicher"
+  ],
+  "semanticHints": [],
+  "promptInserts": {
+    "de": "zeigt innere Zerrissenheit",
+    "en": "shows inner conflict"
+  }
+}

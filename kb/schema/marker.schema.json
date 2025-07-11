@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Marker Set Schema",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "keywords": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "semanticHints": {
+      "type": "array",
+      "items": { "type": "string" },
+      "default": []
+    },
+    "promptInserts": {
+      "type": "object",
+      "properties": {
+        "de": { "type": "string" },
+        "en": { "type": "string" }
+      },
+      "required": ["de", "en"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["version", "keywords", "semanticHints", "promptInserts"],
+  "additionalProperties": false
+}
