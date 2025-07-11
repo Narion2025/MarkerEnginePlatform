@@ -1,0 +1,15 @@
+{
+  "version": "1.0.0",
+  "keywords": [
+    "Schuld",
+    "verantwortlich",
+    "Schuldgefühl",
+    "Reue",
+    "Sühne"
+  ],
+  "semanticHints": [],
+  "promptInserts": {
+    "de": "weist auf Schuld hin",
+    "en": "indicates guilt"
+  }
+}
