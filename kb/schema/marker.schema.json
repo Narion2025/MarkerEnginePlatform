@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://marker-engine.com/schemas/marker.schema.json",
+  "title": "Marker Definition Schema",
+  "description": "Schema for semantic behavior marker definitions",
+  "type": "object",
+  "required": ["name", "keywords", "version"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Human-readable name of the marker",
+      "minLength": 1
+    },
+    "keywords": {
+      "type": "array",
+      "description": "List of keywords for pattern matching",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "semanticHints": {
+      "type": "array",
+      "description": "Semantic hints for enhanced detection",
+      "default": [],
+      "items": {
+        "type": "string"
+      }
+    },
+    "promptInserts": {
+      "type": "object",
+      "description": "Language-specific prompt inserts",
+      "properties": {
+        "de": {
+          "type": "string",
+          "description": "German prompt insert"
+        },
+        "en": {
+          "type": "string",
+          "description": "English prompt insert"
+        }
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the marker definition",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    }
+  },
+  "additionalProperties": false
+} 

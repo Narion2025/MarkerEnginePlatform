@@ -1,0 +1,17 @@
+{
+  "name": "Ambivalenz-Marker",
+  "keywords": [
+    "einerseits andererseits",
+    "ich weiß nicht ob",
+    "ja aber",
+    "vielleicht doch nicht",
+    "bin mir unsicher",
+    "schwanke zwischen"
+  ],
+  "semanticHints": [],
+  "promptInserts": {
+    "de": "Erkenne ambivalente oder widersprüchliche Aussagen, die auf innere Zerrissenheit oder unklare Gefühle hindeuten.",
+    "en": "Detect ambivalent or contradictory statements that indicate inner conflict or unclear feelings."
+  },
+  "version": "1.0.0"
+} 
