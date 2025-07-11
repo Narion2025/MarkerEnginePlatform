@@ -69,4 +69,4 @@ install:
 check-size: build
 	@echo "📏 Checking Image Size..."
 	@SIZE=$$(docker images marker-engine:latest --format "{{.Size}}"); \
-	echo "Image size: $$SIZE" 
+	echo "Image size: $$SIZE"
