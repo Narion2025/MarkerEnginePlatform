@@ -1,0 +1,15 @@
+{
+  "id": "schuld",
+  "label": "Schuld",
+  "version": "1.0.0",
+  "keywords": [
+    "Schuld",
+    "Fehler",
+    "Reue"
+  ],
+  "semanticHints": [],
+  "promptInserts": {
+    "de": "Gefühl von Schuld",
+    "en": "sense of guilt"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "ambivalenz",
+  "label": "Ambivalenz",
+  "version": "1.0.0",
+  "keywords": [
+    "ambivalent",
+    "zwiespältig",
+    "innerer Konflikt"
+  ],
+  "semanticHints": [],
+  "promptInserts": {
+    "de": "zeige Ambivalenz",
+    "en": "show ambivalence"
+  }
+}
